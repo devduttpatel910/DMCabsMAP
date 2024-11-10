@@ -1,17 +1,16 @@
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
 import { requestNotificationPermission } from "./FCM.js";
 
-// Initialize map and set view to a default location (centered on the world)
-const map = L.map('map').setView([20, 0], 2); // World view to start
+// Initialize map and set view to a default location (world view)
+const map = L.map('map').setView([20, 0], 2);
 
-// Add satellite map layer from Mapbox (replace 'your_access_token' with a valid token)
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JjYjUyYzBobngyanF5bWkxY2ZudnYifQ.U6ilje5l_flvteEQ5Kt_AA', {
+// Add Mapbox satellite layer
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=your_access_token', {
     maxZoom: 18,
     tileSize: 512,
     zoomOffset: -1,
     attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> contributors'
 }).addTo(map);
-
 
 let userMarker, driverMarker;
 
@@ -67,7 +66,7 @@ onValue(alcoholLevelRef, (snapshot) => {
     document.getElementById("alcoholLevelDisplay").innerText = `Alcohol Level: ${alcoholLevel}`;
 
     // Define a threshold level for triggering a notification
-    const THRESHOLD_LEVEL = 50; // Adjust this as needed
+    const THRESHOLD_LEVEL = 50;
 
     if (alcoholLevel > THRESHOLD_LEVEL) {
         alert("Warning: High alcohol level detected!");
