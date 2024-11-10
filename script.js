@@ -5,7 +5,7 @@ import { requestNotificationPermission } from "./FCM.js";
 const map = L.map('map').setView([20, 0], 2);
 
 // Add Mapbox satellite layer
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=your_access_token', {
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JjYjUyYzBobngyanF5bWkxY2ZudnYifQ.U6ilje5l_flvteEQ5Kt_AA', {
     maxZoom: 18,
     tileSize: 512,
     zoomOffset: -1,
