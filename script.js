@@ -1,10 +1,24 @@
-// Initialize the map and set its view to a default location
-const map = L.map('map').setView([20, 0], 2); // Starts at a world level view
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-// Add the satellite map layer from OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+h1 {
+    margin: 10px 0;
+}
 
-// Optional: Add a search function (Advanced)
-// You can explore adding search functionality by using Leaflet's plugins, like Leaflet.Control.Geocoder
+#map {
+    height: 80vh;
+    width: 90vw;
+    border: 1px solid #ddd;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
