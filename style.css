@@ -1,51 +1,26 @@
-// Initialize map
-const map = L.map('map').setView([20, 0], 2); // World view to start
-
-// Map layer (basic street map, replace with satellite if desired)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-
-let userMarker, driverMarker;
-
-// Function to find and display user's location
-function findUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const userLat = position.coords.latitude;
-            const userLng = position.coords.longitude;
-
-            // Remove old user marker if exists
-            if (userMarker) map.removeLayer(userMarker);
-
-            // Add user marker
-            userMarker = L.marker([userLat, userLng]).addTo(map)
-                .bindPopup("You are here").openPopup();
-            
-            // Center map to user's location
-            map.setView([userLat, userLng], 14);
-        });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-// Function to simulate driver location near user
-function simulateDriverLocation() {
-    if (!userMarker) {
-        alert("Find your location first!");
-        return;
-    }
+h1 {
+    margin: 10px 0;
+    font-size: 24px;
+    text-align: center;
+}
 
-    // Get user's current location from the map
-    const userLocation = userMarker.getLatLng();
-    const driverLat = userLocation.lat + (Math.random() * 0.02 - 0.01);
-    const driverLng = userLocation.lng + (Math.random() * 0.02 - 0.01);
+#map {
+    height: 80vh;
+    width: 90vw;
+    border: 1px solid #ddd;
+}
 
-    // Remove old driver marker if exists
-    if (driverMarker) map.removeLayer(driverMarker);
-
-    // Add driver marker
-    driverMarker = L.marker([driverLat, driverLng], { color: 'blue' }).addTo(map)
-        .bindPopup("Driver is nearby").openPopup();
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
 }
