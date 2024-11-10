@@ -1,0 +1,21 @@
+/* Basic page styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+/* Map styling */
+#map {
+    height: 80vh; /* Map will take 80% of the viewport height */
+    width: 90vw;  /* Map will take 90% of the viewport width */
+    border: 1px solid #ddd;
+}
