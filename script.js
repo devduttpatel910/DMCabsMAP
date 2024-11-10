@@ -1,14 +1,16 @@
 // Initialize the map with a default view
-const map = L.map('map').setView([20, 0], 2); // Center on the world view initially
+const map = L.map('map').setView([20, 0], 2); // Centered view initially
 
-// Replace 'your_access_token' with your actual Mapbox token
+// Insert your actual Mapbox access token here
 const mapboxAccessToken = 'your_access_token_here';
 
 // Add the Mapbox satellite tile layer
-L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}@2x?access_token=${pk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JsbTBkODFnN3EyanNjODl6NjIwZG4ifQ.oHgNKjHMdHf4WW_Kkwsmrg}`, {
+L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}@2x?access_token= ${sk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JyaWp5ejFydjAycXF4NHM1bHptMmMifQ.i6yTVvdvB2M5XyzI7K5ezw}`, {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> contributors',
-}).addTo(map);
+}).addTo(map).on('tileerror', function(error) {
+    console.error("Map tile loading error:", error);
+});
 
 // Variables for user and driver markers
 let userMarker, driverMarker;
