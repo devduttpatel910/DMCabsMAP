@@ -1,3 +1,8 @@
+// FCM.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+import { getMessaging, onMessage, getToken } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCczgX-9HVUOLqGOxfvprWUTFV87OBvWU0",
   authDomain: "dmcabs-9fda9.firebaseapp.com",
@@ -8,29 +13,23 @@ const firebaseConfig = {
   measurementId: "G-K4T1YC60EP"
 };
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const messaging = firebase.messaging();
+const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
 
-const alcoholLevelRef = database.ref('alcoholLevel');
-alcoholLevelRef.on('value', (snapshot) => {
-    const alcoholLevel = snapshot.val();
-    document.getElementById('alcoholLevelDisplay').innerText = `Alcohol Level: ${alcoholLevel}`;
-});
-// Request permission for push notifications
-messaging.requestPermission().then(() => {
-    return messaging.getToken();
-}).then((token) => {
-    console.log('FCM Token:', token);
-    // Send this token to your server to subscribe the user
-}).catch((err) => {
-    console.log('Error getting permission or token:', err);
-});
-
-// Handle incoming push notifications
-messaging.onMessage((payload) => {
-    console.log('Message received:', payload);
-    // Display the notification in the web app or system tray
-    alert(`Notification: ${payload.notification.body}`);
-});
+// Request permission and get token for push notifications
+export function requestNotificationPermission() {
+    Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+            getToken(messaging, { vapidKey: "YOUR_PUBLIC_VAPID_KEY" }).then(currentToken => {
+                if (currentToken) {
+                    console.log("Notification Token:", currentToken);
+                    // Save or send token to your server here
+                } else {
+                    console.log("No registration token available.");
+                }
+            }).catch(error => {
+                console.error("An error occurred while retrieving token.", error);
+            });
+        }
+    });
+}
