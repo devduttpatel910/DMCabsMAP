@@ -5,7 +5,7 @@ const map = L.map('map').setView([20, 0], 2); // Center on the world view initia
 const mapboxAccessToken = 'your_access_token_here';
 
 // Add the Mapbox satellite tile layer
-L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}@2x?access_token=${sk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JsaGVieDB5NmYya3NhZWF3N3k3MnkifQ.MT2-GK71cHdlvcS3Ef0PYQ}`, {
+L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/512/{z}/{x}/{y}@2x?access_token=${pk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JsbTBkODFnN3EyanNjODl6NjIwZG4ifQ.oHgNKjHMdHf4WW_Kkwsmrg}`, {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> contributors',
 }).addTo(map);
