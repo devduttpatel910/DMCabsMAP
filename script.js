@@ -2,7 +2,7 @@
 const map = L.map('map').setView([20, 0], 2); // World view to start
 
 // Add satellite map layer from Mapbox (replace 'your_access_token' with a valid token)
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=your_access_token', {
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGV2ZHV0dDAzIiwiYSI6ImNtM2JjYjUyYzBobngyanF5bWkxY2ZudnYifQ.U6ilje5l_flvteEQ5Kt_AA', {
     attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> contributors',
     tileSize: 512,
     zoomOffset: -1
